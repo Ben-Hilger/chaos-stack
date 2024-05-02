@@ -12,6 +12,8 @@ const newEntryAmount = ref<number | null>(null)
 const newEntryName = ref<number | null>(null)
 const hasAddEntryError = ref<boolean>(false)
 
+const isAddingEntry = ref<boolean>(false)
+
 const chaosStore = useChaosStore()
 
 const canAddNewEntry = computed(() => {
@@ -22,9 +24,9 @@ async function addNewEntry() {
   if (!canAddNewEntry.value) {
     return
   }
-
+  isAddingEntry.value = true
   try {
-    await chaosStore.apiService.post("entry",
+    await chaosStore.apiService.post("api/entry",
         { name: newEntryName.value, userId: props.verifiedUserId, amount: newEntryAmount.value })
     data.value.push([newEntryAmount.value, newEntryName.value])
     newEntryName.value = null
@@ -32,6 +34,8 @@ async function addNewEntry() {
   } catch (error) {
     hasAddEntryError.value = true
     console.log(error)
+  } finally {
+    isAddingEntry.value = false
   }
 }
 
@@ -48,7 +52,7 @@ async function loadEntriesForUser() {
     return
   }
   try {
-    const response: any[] = await chaosStore.apiService.get("entry", {userId: props.verifiedUserId})
+    const response: any[] = await chaosStore.apiService.get("api/entry", {userId: props.verifiedUserId})
     response.forEach((item) => {
       data.value.push([item.amount, item.name])
     })
@@ -77,7 +81,10 @@ watch(() => props.verifiedUserId, () => {
       <AppInput v-model="newEntryAmount" type="number" id="amount"></AppInput>
       <label for="amount" class="mt-3 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
       <AppInput v-model="newEntryName" type="text" id="amount"></AppInput>
-      <AppButton class="mt-3" v-on:click="addNewEntry" v-bind:is-disabled="!canAddNewEntry">Add Entry</AppButton>
+      <AppButton class="mt-3" v-on:click="addNewEntry" v-bind:is-disabled="!canAddNewEntry">
+        <AppSpinner v-if="isAddingEntry"></AppSpinner>
+        Add Entry
+      </AppButton>
       <div v-if="hasAddEntryError" class="mt-3 text-red-500">
         There was an issue adding a new entry, please try again later
       </div>

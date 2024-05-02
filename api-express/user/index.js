@@ -11,7 +11,7 @@ export function setupUserRoutes(app) {
      *  @param {express.Request} req
      *  @param {express.Response} res
      */
-    app.put('/user', async (req, res) => {
+    app.put('/express/api/user', async (req, res) => {
         await handleUserIdValidationRoute(req, res)
     })
 
@@ -20,7 +20,7 @@ export function setupUserRoutes(app) {
      *  @param {express.Request} req
      *  @param {express.Response} res
      */
-    app.post('/user', async (req, res) => {
+    app.post('/express/api/user', async (req, res) => {
         const newUUID = await generateUserId();
         res.status(200).json({data: { uuid: newUUID }})
     })

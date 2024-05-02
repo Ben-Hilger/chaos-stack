@@ -12,7 +12,7 @@ export function setupEntryRoutes(app) {
      *  @param {express.Request} req
      *  @param {express.Response} res
      */
-    app.get('/entry', async (req, res) => {
+    app.get('/express/api/entry', async (req, res) => {
         await handleGetAllEntriesRoute(req, res)
     })
     /**
@@ -20,7 +20,7 @@ export function setupEntryRoutes(app) {
      *  @param {express.Request} req
      *  @param {express.Response} res
      */
-    app.post('/entry', async (req, res) => {
+    app.post('/express/api/entry', async (req, res) => {
         await handleAddEntryRoute(req, res)
     })
 }
