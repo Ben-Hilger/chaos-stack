@@ -1,12 +1,19 @@
 <script setup lang="ts">
 const chaosStore = useChaosStore()
+
+const selectedApiProvider = ref<string>("unknown")
+
+watch(() => chaosStore.apiService.apiProvider, (newValue: string | null) => {
+  selectedApiProvider.value = newValue ?? "unknown"
+}, {deep: true, immediate: true})
+
 </script>
 
 <template>
   <div class="border-b border-black w-full flex justify-center items-center gap-10 pb-3">
     <div class="flex flex-col items-center">
       <a href="/" class="text-3xl font-bold mb-0.5">Chaos Stack</a>
-      <span class="text-sm mb-0.5">Powered by Nuxt and {{ chaosStore.apiService.selectedApiProvider }}</span>
+      <span class="text-sm mb-0.5">Powered by Nuxt and {{ selectedApiProvider }}</span>
     </div>
     <a href="https://github.com/Ben-Hilger/chaos-stack" target="_blank">
       <svg class="w-10 h-10 text-gray-800 dark:text-white border border-black rounded p-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">

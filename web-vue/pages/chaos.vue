@@ -54,6 +54,9 @@ async function generateUserId() {
         To begin, please generate a new user id, or enter a previous user id if you've been here before.<br> Only this user id is stored, we will never ask for personal information.
       </template>
     </div>
+      <AppButton v-bind:type="'secondary'" v-on:click="chaosStore.apiService.shuffleApiServiceProvider()" class="mt-3">
+        Shuffle Backend API Provider
+      </AppButton>
     <div class="flex justify-center flex-col mt-3 w-8/12">
       <template v-if="verifiedUserId">
         <EntryView v-bind:verified-user-id="verifiedUserId"></EntryView>

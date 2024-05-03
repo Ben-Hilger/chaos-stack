@@ -2,7 +2,7 @@
 export class ApiService {
 
     private baseURL: string|null = null
-    private apiProvider: string|null = null
+    apiProvider: string|null = null
 
     constructor() {
         this.configureApiService()
@@ -14,7 +14,6 @@ export class ApiService {
         if (error) {
             throw error
         }
-        console.log(data)
         return data
     }
 
@@ -36,14 +35,15 @@ export class ApiService {
         return data
     }
 
-    get selectedApiProvider() {
-        return this.apiProvider
+    shuffleApiServiceProvider() {
+        this.configureApiService()
     }
 
     private configureApiService() {
         const config = useRuntimeConfig()
         const availableEndpoints = [
-            {baseURL: config.public.expressApiBase, name: "Express"}
+            {baseURL: config.public.expressApiBase, name: "Express"},
+            {baseURL: config.public.nestApiBase, name: "Nest.js"}
         ]
         const selectedApiProvider = Math.floor(Math.random() * availableEndpoints.length)
 
