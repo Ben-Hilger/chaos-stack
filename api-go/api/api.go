@@ -63,7 +63,7 @@ func (a ApiHandler) handleUserRoute(response http.ResponseWriter, request *http.
 	}
 }
 
-func (a ApiHandler) handleAddUserIdRoute(response http.ResponseWriter, request *http.Request) {
+func (a ApiHandler) handleAddUserIdRoute(response http.ResponseWriter, _ *http.Request) {
 	user, err := a.dbStore.CreateNewUser()
 	if err != nil {
 		fmt.Println("unable to create a new userId", err)
