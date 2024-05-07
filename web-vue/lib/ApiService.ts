@@ -43,8 +43,10 @@ export class ApiService {
         const config = useRuntimeConfig()
         const availableEndpoints = [
             {baseURL: config.public.expressApiBase, name: "Express"},
-            {baseURL: config.public.nestApiBase, name: "Nest.js"}
-        ]
+            {baseURL: config.public.nestApiBase, name: "Nest.js"},
+            {baseURL: config.public.goApiBase, name: "Go"}
+        ].filter((option) => option.name !== this.apiProvider)
+
         const selectedApiProvider = Math.floor(Math.random() * availableEndpoints.length)
 
         this.baseURL = availableEndpoints[selectedApiProvider].baseURL
