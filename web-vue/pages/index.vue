@@ -10,7 +10,7 @@
     <div>The chaos stack is a very simple web application designed to have multiple backends (and eventually frontend)
       frameworks and programming languages that are easily interchangeable with each other. So, whenever you visit the website, you'll potentially interact with a new backend service without diminishing the overall experience. The pair is randomly
       assigned when the page is loaded.</div>
-    <div class="font-semibold mt-1">Currently, an Express and Nest.js backend are available (50% chance of getting either one when shuffling), but check back soon as we complete the roadmap and add more backend services</div>
+    <div class="font-semibold mt-1">Currently, an Express, Golang, and Nest.js backend are available, but check back soon as we complete the roadmap and add more backend services</div>
     <div class="mt-5 mb-1 font-bold">Why create the chaos stack?</div>
     <div class="mb-5">
       The chaos stack provides an easy playground to explore and learn the basics of different programming languages and
@@ -24,7 +24,6 @@
         <li>Nuxt Api</li>
         <li>Java Spring</li>
         <li>Swift Vapor</li>
-        <li>Go</li>
         <li>...and any more that are of interest</li>
       </ul>
     </div>
