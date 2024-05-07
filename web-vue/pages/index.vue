@@ -24,6 +24,7 @@
         <li>Nuxt Api</li>
         <li>Java Spring</li>
         <li>Swift Vapor</li>
+        <li>PHP Laravel</li>
         <li>...and any more that are of interest</li>
       </ul>
     </div>
